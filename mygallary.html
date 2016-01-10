@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>TODO supply a title</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <script src="mydata/jquery.min.js" ></script>
+        <style>
+            #mainShow{
+                width: 500px;
+                height: 300px;
+                margin: 0 auto;
+                position: relative;
+                background-color: #DAD3BD;
+                overflow: hidden;
+            }
+            .imgHolderDiv{
+                width: 500px;
+                height: 300px;
+                position: absolute;
+                overflow: hidden;
+                padding: 0 auto;
+                text-align: center;
+                background-color: #000;
+                z-index: 99;
+                top: 0;
+                left: 500px;
+                
+            }
+            .imgHolderDiv img{
+                width: 500px;
+            }
+        </style>
+    </head>
+    <body>
+        <div id="mainShow">
+            <div class="imgHolderDiv">
+                <img src="img/icon/01.jpg" alt=""/>
+            </div>
+            <div class="imgHolderDiv">
+                <img src="img/icon/02.jpg" alt=""/>
+            </div>
+            <div class="imgHolderDiv">
+                <img src="img/icon/03.png" alt=""/>
+            </div>
+            <div class="imgHolderDiv">
+                <img src="img/icon/04.jpg" alt=""/>
+            </div>
+            <div class="imgHolderDiv">
+                <img src="img/icon/05.jpg" alt=""/>
+            </div>
+            <div class="imgHolderDiv">
+                <img src="img/icon/06.png" alt=""/>
+            </div>
+            <div class="imgHolderDiv">
+                <img src="img/icon/07.png" alt=""/>
+            </div>
+            <div class="imgHolderDiv">
+                <img src="img/icon/08.jpg" alt=""/>
+            </div>
+            <div class="imgHolderDiv">
+                <img src="img/icon/09.png" alt=""/>
+            </div>
+            
+        </div>
+        <script>
+            var Gindex = 1;
+            var MyelementName = ".imgHolderDiv";
+            var widthOfGal = "500px";
+            $( document ).ready(function(){
+                $(MyelementName).first().css({"z-index": "100","left":"0px"});
+            });
+            setInterval(function(){
+                var NextSilde = MyelementName+":eq( "+Gindex+" )";
+                var CurrentSlide = MyelementName+":eq( "+ (Gindex-1) +" )";
+                if((Gindex-1)<0){
+                    CurrentSlide = MyelementName+":eq( "+ ($(MyelementName).length-1) +" )";
+                }
+                $(CurrentSlide).css( "z-index", "100" );
+                $(NextSilde).css( "z-index", "101" );
+                $(NextSilde).animate({left:"0px"},"slow", function(){
+                    Gindex++;
+                    if(Gindex == $(MyelementName).length){
+                        Gindex = 0;
+                    }
+                    $(CurrentSlide).css({"z-index": "100","left":widthOfGal}); 
+                });
+            },5000);
+        </script>
+    </body>
+</html>
